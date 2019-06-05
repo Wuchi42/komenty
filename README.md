@@ -2,12 +2,11 @@
 ### Install dependencies via package.json files for backend and frontend
 
 ## Second step
-#### `cd backend`
+open cmd in backend dir
 ### `node server.js`
 
 ## Third step
-#### `cd ..`
-#### `cd frontend`
+open cmd in front end dir
 ### ` npm start`
 
 ## Goals
