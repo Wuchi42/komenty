@@ -1,0 +1,11 @@
+{
+  "mongoA": {
+    "password": "123",
+    "login" : "weisee",
+    "server": "kosmonauti-hgnah.mongodb.net",
+    "database": "databaseKomenty",
+    "retry": "retryWrites=true",
+    "type": "mongodb+srv",
+    "whole": "mongodb+srv://weisee:123@kosmonauti-hgnah.mongodb.net/databaseKomenty?retryWrites=true"
+  }
+  }

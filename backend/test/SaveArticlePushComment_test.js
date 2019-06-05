@@ -1,6 +1,6 @@
 const assert = require('assert');
-const Article = require('../src/models/article');
-const Comment = require('../src/models/comment');
+const Article = require('../models/article');
+const Comment = require('../models/comment');
 //describe test
 describe('Saving article to db',function () {
     //create test
@@ -10,19 +10,18 @@ describe('Saving article to db',function () {
     it('save comment to article',function (done) {
         com = new Comment({
             avatar : "https://scontent.fprg1-1.fna.fbcdn.net/v/t1.0-9/37528094_10204918782887188_8597874629320638464_n.jpg?_nc_cat=102&_nc_ht=scontent.fprg1-1.fna&oh=2da46aa4c6250dedc605775189a0a679&oe=5D553805",
-            content: {
+
                 author: "Jsme Wuči",
                 text: "Čahoj světoune",
-            }
+
         });
         art = new Article({
             title: 'React',
             comments: [{
                 avatar : "https://scontent.fprg1-1.fna.fbcdn.net/v/t1.0-9/37528094_10204918782887188_8597874629320638464_n.jpg?_nc_cat=102&_nc_ht=scontent.fprg1-1.fna&oh=2da46aa4c6250dedc605775189a0a679&oe=5D553805",
-                content: {
                     author: "Jsme Wuči",
                     text: "Čahoj světoune",
-                }}]
+                }]
 
         });
 
@@ -38,10 +37,9 @@ describe('Saving article to db',function () {
     it('pushes comment to article',function (done) {
         com = new Comment({
             avatar : "https://scontent.fprg1-1.fna.fbcdn.net/v/t1.0-9/37528094_10204918782887188_8597874629320638464_n.jpg?_nc_cat=102&_nc_ht=scontent.fprg1-1.fna&oh=2da46aa4c6250dedc605775189a0a679&oe=5D553805",
-            content: {
                 author: "Jsme Wuči",
                 text: "Čahoj světoune",
-            }
+
         });
         art = new Article({
             title: 'React'
@@ -52,8 +50,8 @@ describe('Saving article to db',function () {
                 record.comments.push(com);
                 record.save().then(function () {
                     Article.findOne({_id:art._id}).then(function (result) {
-                        assert(result.comments.length === 1)
-                        done();
+                        assert(result.comments.length === 1);
+                                                done();
                     });
                 });
             });

@@ -1,8 +1,10 @@
+const srv = require("../nodemon").mongoA;
 const mongoose = require('mongoose');
 // ES6 promise
 mongoose.Promise = global.Promise;
 
-const uri = "mongodb+srv://weisee:123@kosmonauti-hgnah.mongodb.net/databaseKomenty?retryWrites=true";
+const uri = srv.type+"://"+srv.login+":"+srv.password+"@"+srv.server+"/"+srv.database+"?"+srv.retry;
+// const uri = srv.whole;
 // connect before test run
 before(function (done) {
     // connect to mongodb
