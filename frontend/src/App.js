@@ -11,11 +11,9 @@ let articleJson = [];
 
 class App extends Component {
     state = {
-        comment: {
             avatar: null,
             author: null,
-            text: null
-        },
+            text: null,
         articleNow: null,
         articles: [{
             _id: null,
@@ -31,49 +29,48 @@ class App extends Component {
         idToDelete: null,
         idToUpdate: null,
         objectToUpdate: null,
-        dbConnect:null
+        dbConnect: null
     };
 
     // when component mounts, first thing it does is fetch all existing data from our db
     componentDidMount() {
-let interval;
-      this.getArticlesFromDb()
+        let interval;
+        this.getArticlesFromDb()
 
-            if (!this.state.intervalIsSet) {
-                interval =
-                    setInterval(this.getArticlesFromDb, 1000);
-                this.setState({intervalIsSet: interval});
-            }
-            if (!this.state.articleNow) {
-                this.setState({articleNow: 0});
-            }
+        if (!this.state.intervalIsSet) {
+            interval =
+                setInterval(this.getArticlesFromDb, 1000);
+            this.setState({intervalIsSet: interval});
+        }
+        if (!this.state.articleNow) {
+            this.setState({articleNow: 0});
+        }
     }
 
     _handleTextFieldChange = (e) => {
 
         if (this.state) {
             this.setState({
-                comment:{text: e.target.value}
+               text: e.target.value
             });
-            console.log(this.state.comment.text);
+            console.log(this.state.text);
         }
     };
     _handleAuthorFieldChange = (e) => {
 
         if (this.state) {
-            this.setState({
-                comment:{author: e.target.value}
-            });
-            console.log(this.state.comment.author);
+            this.setState( {author: e.target.value}
+            );
+            console.log(this.state.author);
         }
     };
     _handleAvatarFieldChange = (e) => {
 
         if (this.state) {
             this.setState({
-                comment:{avatar: e.target.value}
-            });
-            console.log(this.state.comment.avatar);
+             avatar: e.target.value}
+            );
+            console.log(this.state.avatar);
         }
     };
 
@@ -83,9 +80,9 @@ let interval;
         let i = this.state.articleNow;
         if (this.state.articles[i]) {
             const com = Object.create(commentObj);
-            com.text = this.state.comment.text;
-            com.avatar = this.state.comment.avatar;
-            com.author = this.state.comment.author;
+            this.state.text ? com.text = this.state.text : com.text = demon.commentExample.text;
+            this.state.avatar ? com.avatar = this.state.avatar : com.avatar = demon.commentExample.avatar;
+            this.state.author ? com.author = this.state.author : com.author = demon.commentExample.author;
             console.log(com);
             const art = Object.create(articleObj);
             art._id = this.state.articles[i]._id;
@@ -133,8 +130,7 @@ let interval;
             articleJson = [];
             articleTitle = 'Není vybrán žádný příspěvek'
             main = <title>{articleTitle}</title>
-        }
-         else {
+        } else {
             articleTitle = article.title;
             articleJson = article.comments;
             for (let i = 0; i < articleJson.length; i++) {
@@ -170,8 +166,10 @@ let interval;
                         </Header>
                         {rows}
                         <Form id={'addComment'}>
-                            <Form.Input id={'addingCommentAuthor'} onChange={this._handleAuthorFieldChange} onBlur={this._handleAuthorFieldChange} defaultValue={demon.states.article.comments.author}/>
-                            <Form.Input id={'addingCommentAvatar'} onChange={this._handleAvatarFieldChange} onBlur={this._handleAvatarFieldChange} defaultValue={demon.states.article.comments.avatar}/>
+                            <Form.Input id={'addingCommentAuthor'} onChange={this._handleAuthorFieldChange}
+                                        onBlur={this._handleAuthorFieldChange}/>
+                            <Form.Input id={'addingCommentAvatar'} onChange={this._handleAvatarFieldChange}
+                                        onBlur={this._handleAvatarFieldChange}/>
                             <Form.TextArea id={'addingCommentText'} onChange={this._handleTextFieldChange}/>
                             <Button content='Add Comment' labelPosition='left' icon='edit' primary
                                     onClick={this._handleAddComment}/>
