@@ -1,12 +1,13 @@
+##### Using Node.js
 ## First step
-### Install dependencies via package.json files for backend and frontend
+### Install dependencies via package.json files for backend and frontend 
 
 ## Second step
 open cmd in backend dir
 ### `node server.js`
 
 ## Third step
-open cmd in front end dir
+open cmd in frontend dir
 ### ` npm start`
 
 ## Goals

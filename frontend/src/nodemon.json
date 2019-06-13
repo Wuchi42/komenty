@@ -11,15 +11,16 @@
   "commentExample": {
     "avatar": "https://scontent.fprg1-1.fna.fbcdn.net/v/t1.0-9/37528094_10204918782887188_8597874629320638464_n.jpg?_nc_cat=102&_nc_ht=scontent.fprg1-1.fna&oh=2da46aa4c6250dedc605775189a0a679&oe=5D553805",
     "author": "Anonymouse",
-    "text": "React je pro blbce"
+    "text": "React je pro frajery"
   },
-  "states":{
+  "states": {
     "article": {
-      "name": "article:",
+      "_id": "0",
+      "title": "article",
       "comments": {
-        "avatar": "avatar:",
-        "author": "author:",
-        "text": "text:"
+        "avatar": "avatar",
+        "author": "anonymous",
+        "text": "text"
       }
     }
   }

@@ -4,8 +4,9 @@ var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Article = require('./models/article');
-const dbRoute =require('../frontend/nodemon').mongoA.whole;
-
+const Comment = require('./models/comment');
+const dbRoute =require('../frontend/src/nodemon').mongoA.whole;
+const {ObjectId} = require('mongodb').ObjectID;
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
@@ -25,10 +26,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 // GET METHOD fetches all available data from DB
-router.get('/getArticle', (req, res) => {
-    Article.find((err, article) => {
+router.get('/getArticles', (req, res) => {
+    Article.find((err, articles) => {
         if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true, article: article });
+        return res.json({ success: true, articles: articles });
     });
 });
 // UPDATE METHOD from DB
@@ -38,6 +39,19 @@ router.post('/updateArticle', (req, res) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
     });
+});
+router.post('/addCommentToArticle',(req,res)=>{
+    const {id,update} = req.body;
+    const objID = new ObjectId();
+    objID.id = id;
+    const com = new Comment(update.message);
+    console.log(objID.id);
+    Article.find({_id:objID.id}).then( function (record) {
+        record[0].comments.push(com);
+        record[0].save();
+        return res.json({ success: true });
+    }
+    )
 });
 // DELETE METHOD from DB
 router.delete('/deleteArticle', (req, res) => {
@@ -60,7 +74,7 @@ router.post('/putArticle', (req, res) => {
         });
     }
     article.message = message;
-    article.id = id;
+    article._id = id;
     article.save((err) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
