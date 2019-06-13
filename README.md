@@ -12,7 +12,7 @@ open cmd in frontend dir
 
 ## Goals
 ##### first
- is to create system and ui for adding comments,
+ is to create system and ui for adding comments -- mostly done
   
 ##### second 
 system and ui for adding new articles, 

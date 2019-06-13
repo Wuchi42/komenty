@@ -149,7 +149,7 @@ let interval;
                             {articleJson[i].text}
                         </Comment.Text>
                         <Comment.Actions>
-                            <Comment.Action key={("Reply" + i)}>Reply</Comment.Action>
+                            {/*<Comment.Action key={("Reply" + i)}>Reply</Comment.Action>*/}
                         </Comment.Actions>
                     </Comment.Content>
 
