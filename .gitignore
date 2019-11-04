@@ -14,6 +14,7 @@ frontend/coverage
 frontend/build
 
 # misc
+
 f.DS_Store
 .env.local
 .env.development.local
